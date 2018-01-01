@@ -14,7 +14,7 @@ void main() {
 		printf("Please Enter The Amount Of Players (Between 2 & 10)\n");
 		scanf("%d", &playerNumber);
 	} while (playerNumber < 1 || playerNumber > 14);
-
+	
 	// Rounds Track
 	for (int roundNumber = 1; roundNumber <= rounds; ) {
 		printf("Would you like to exit your current round ?");
