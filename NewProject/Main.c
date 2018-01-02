@@ -1,10 +1,13 @@
 #include <stdio.h>
 // Main
+void GameSave();
 
 // Variables
 int playerNumber = 0;
 int rounds = 13;
 char exit, save;
+
+#define CARDS_IN_DECK 13
 void main() {
 
 	
@@ -17,50 +20,68 @@ void main() {
 	
 	// Rounds Track
 	for (int roundNumber = 1; roundNumber <= rounds; ) {
-		printf("Would you like to exit your current round ?");
-		scanf("%c", &exit);
+		printf("Would you like to exit your current round ? (Y = Yes || N = No) \n");
+		scanf("%s", &exit);
 		if (exit = 'y' || 'Y')
-			gamesave();
+			GameSave();
 		else {
 			roundNumber++;
 		}
 	}	
 }
 // Getting user to save the game
- /*char gamesave() {
-	printf("Would you like to save the game ?");
-	scanf("%c", &save);
-
-	getchar;
-}*/
-
-void saveGame(char fileName[15], int round, int totalPlayers, Player playersList[MAX_PALYERS],
-	Card allPlayersCards[MAX_PALYERS][CARDS_PER_PLAYER]) {
-	FILE* pFile;
-	strcat(fileName, ".save"); // add extension ".save" to the end of the file
-	pFile = fopen(fileName, "w");
-
-	if (pFile == NULL) {
-		printf("The file could not be opened\n");
-	}
-	else {
-		// write to file:
-		fprintf(pFile, "%d\n", round);
-		fprintf(pFile, "%d\n", totalPlayers);
-		
-
-		// Player.id, Player.name, Player. points, ...
-		for (int player = 0; player < totalPlayers; player++) {
-			fprintf(pFile, "%d\t%s\t%d", playersList[player].id,
-				playersList[player].name,
-				playersList[player].points);
-			// Cards
-			for (int card = 0; card < CARDS_PER_PLAYER; card++) {
-				fprintf(pFile, "\t%d", allPlayersCards[player][card].value);
-			}
-			fprintf(pFile, "\n");
-		}
-		fclose(pFile);
-	}
+void GameSave() {
+	char save;
+	printf("Would you like to save the game ?\n");
+	scanf("%s", &save);
+	
+	
 }
 
+typedef struct Card {
+	char name[5];
+	int value;
+} Card;
+
+void createNewDeck(Card newDeck[4][CARDS_IN_DECK])
+{
+
+
+	Card cards[4][CARDS_IN_DECK] = {
+		{
+			{ "2", 2 },{ "3", 3 },{ "4", 4 },{ "5", 5 },{ "6", 6 },{ "7", 7 },{ "8", 8 },{ "9", 9 },
+			{ "10", 10 },{ "J", 11 },{ "Q", 12 },{ "K", 13 },{ "A", 14 }
+		},
+		{
+			{ "2", 2 },{ "3", 3 },{ "4", 4 },{ "5", 5 },{ "6", 6 },{ "7", 7 },{ "8", 8 },{ "9", 9 },
+			{ "10", 10 },{ "J", 11 },{ "Q", 12 },{ "K", 13 },{ "A", 14 }
+		},
+		{
+			{ "2", 2 },{ "3", 3 },{ "4", 4 },{ "5", 5 },{ "6", 6 },{ "7", 7 },{ "8", 8 },{ "9", 9 },
+			{ "10", 10 },{ "J", 11 },{ "Q", 12 },{ "K", 13 },{ "A", 14 }
+		},
+		{
+			{ "2", 2 },{ "3", 3 },{ "4", 4 },{ "5", 5 },{ "6", 6 },{ "7", 7 },{ "8", 8 },{ "9", 9 },
+			{ "10", 10 },{ "J", 11 },{ "Q", 12 },{ "K", 13 },{ "A", 14 }
+		}
+	};
+}
+//void createNewDeck(Card newDeck[4][CARDS_IN_DECK]);
+
+
+
+
+
+
+
+
+/*char cards[4][13] = {
+
+	{ '0','1','2','3','4','5','6','7','8','9','10','11','12', },
+	{ '0','1','2','3','4','5','6','7','8','9','10','11','12', },
+	{ '0','1','2','3','4','5','6','7','8','9','10','11','12', },
+	{ '0','1','2','3','4','5','6','7','8','9','10','11','12', },
+
+
+
+};*/
