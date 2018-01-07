@@ -49,6 +49,7 @@ void main()
 	{
 		char exit;
 		// Round Number
+		printf("****************************************************************************************");
 		printf("\n\n\tRound %d\n", roundNumber);
 		// Random Cards Are Drawn By Each Player
 		int j = 0;
@@ -70,7 +71,9 @@ void main()
 			printf("\n\tNext round\n");
 		}
 	}
-	printf("\n---Game over---");
+	printf("\n---GAME OVER---");
+	printf("\n---ADD UP YOUR SCORES TO SEE WHO THE WINNERS ARE---");
+	getch();
 } // End Of Main 
 
 // Method To Prompt User To Enter Name
@@ -86,8 +89,26 @@ void enterPlayerName(int player, Player listOfPlayers[10])
 	}
 } // End Of enterPlayerName() Method
 
+// Random Number Generator
+int randomNum(int num)
+{
+	return rand() % num;
+} // End Of randomNum() Method
+
+// Method For Drawing Cards
+void cardDraw()
+{
+	int r, s;
+	// Random
+	r = randomNum(13);
+	s = randomNum(4);
+
+	printf("\t\n\t%d of %s\n\n", ranks[r], suits[s]);
+} // End Of cardDraw() Method
+
 // Method For Saving Game
-void gameSave() {
+void gameSave()
+{
 	char save;
 	printf("\nWould You Like To Save And Exit The Game? (Y = Yes || N = No)");
 	scanf("%s", &save);
@@ -106,25 +127,6 @@ void gameSave() {
 		printf("You Have Exited The Game Without Saving !");
 	}
 } // End Of gameSave() Method
-
-// Random Number Generator
-int randomNum(int num)
-{
-	return rand() % num;
-}
-
-// Method For Drawing Cards
-void cardDraw()
-{
-	int r, s;
-	// Random
-	r = randomNum(13);
-	s = randomNum(4);
-
-	printf("\t\n\t%d of %s\n\n", ranks[r], suits[s]);
-}
-
-
 
 
 
