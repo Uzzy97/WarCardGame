@@ -10,18 +10,18 @@ typedef struct Player
 	int playerPoints;
 }Player;
 
-// Declaring methods
+// Declaring Methods
 void gameSave();
 int randomNum(int n);
 void cardDraw();
 
-// Declare Global Variables
+// Declaring Global Variables
 char *suits[4] = { "spades","clubs","diamonds","hearts" };
 int ranks[13] = { 2,3,4,5,6,7,8,9,10,11,12,13,14 };
 
 void main()
 {
-	// Declare Variables
+	// Declaring Variables
 	int playerNumber = 0;
 	Player listOfPlayers[10];
 	int ROUNDS = 13;
@@ -29,67 +29,72 @@ void main()
 	// Introduction To Game - Heading
 	printf("WELCOME TO THE ULTIMATE CARD GAME...WAR !\nARE YOU READY TO TAKE ON YOUR OPPONENTS...\n\n");
 
-	// Input for the amount of players
+	// A Do - While Loop, Getting Number Of Players
 	do {
 		printf("Please Enter The Amount Of Players (Between 2 & 10): ");
 		scanf_s("%d", &playerNumber);
+		//Taking In Consideration Of The Amount Of Maximum Players
 	} while (playerNumber < 1 || playerNumber > 14);
 
-	void enterNames(int player, Player listOfPlayers[10]);
-	enterNames(playerNumber, listOfPlayers);
+	// Calling The Method To Prompt User To Enter Name
+	void enterPlayerName(int player, Player listOfPlayers[10]);
+	enterPlayerName(playerNumber, listOfPlayers);
 
 	// Starting the rounds using for loop
-	for (int roundNum = 1; roundNum < ROUNDS;)
+	int roundNumber = 1;
+	//Rounds Go Up To And Including 13
+	for (roundNumber; roundNumber <= ROUNDS;)
 	{
 		char exit;
 		// Round Number
-		printf("\n\n\tRound %d\n", roundNum);
-		//Random cards drawn by players
-		for (int j = 0; j < playerNumber; j++)
+		printf("\n\n\tRound %d\n", roundNumber);
+		// Random Cards Are Drawn By Each Player
+		int j = 0;
+		for (j; j < playerNumber; j++)
 		{
 			cardDraw();
 		}
 		// Exiting Round
 		printf("\nSelect (n/N) For Next Round, Or Select (y/Y) To Save Game And Exit (Y = Yes || N = No)");
-		scanf_s("%s", &exit);
+		scanf("%s", &exit);
 
+		// If 'Y'||'y' Is Chosen, Then Game Is Saved And Exited
 		if (exit == 'y' || exit == 'Y') {
 			gameSave();
-			roundNum = 13;
+			roundNumber = 13;
 		}
 		else {
-			roundNum++;
+			roundNumber++;
 			printf("\n\tNext round\n");
 		}
 	}
 	printf("\n---Game over---");
 }
 
-void enterNames(int player, Player listOfPlayers[10])
+// Method To Prompt User To Enter Name
+void enterPlayerName(int player, Player listOfPlayers[10])
 {
 	int i = 0;
 	for (i; i < player; i++)
 	{
 		char name[50];
+		// Player & Player Number - Followed By First Name
 		printf("Player (%d) Please Enter Your First Name: ", i + 1);
 		scanf("%s", name);
-		Player pl;
-		pl.playerID = i;
-		pl.playerPoints = 0;
-		listOfPlayers[i] = pl;
 	}
 }
 
-// gameSave method
+// Method For Saving Game
 void gameSave() {
 	char save;
 	printf("\nWould You Like To Save And Exit The Game? (Y = Yes || N = No)");
-	sscanf_s("%s", &save);
+	scanf("%s", &save);
 	if (save == 'y' || save == 'Y')
 	{
 		printf("Your Game Has Been Saved :) ");
 	}
 
+	// If n/N Is Chosen, Then Game Is Not Saved
 	else if (save == 'n' || save == 'N')
 	{
 		printf("Your Game Has Been Not Been Saved \n\nYou Have Exited The Game Without Saving !");
@@ -98,24 +103,26 @@ void gameSave() {
 	{
 		printf("You Have Exited The Game Without Saving !");
 	}
-}
+}// End Of gameSave Method
 
-// cardDraw method
-void cardDraw() {
-	int r, s;
-
-	r = randomNum(13);
-	s = randomNum(4);
-
-	printf("\t\n\t%d of %s\n\n", ranks[r], suits[s]);
-
-}
-
-// randomNum method
+// Random Number Generator
 int randomNum(int num)
 {
 	return rand() % num;
 }
+
+// Method For Drawing Cards
+void cardDraw()
+{
+	int r, s;
+	// Random
+	r = randomNum(13);
+	s = randomNum(4);
+
+	printf("\t\n\t%d of %s\n\n", ranks[r], suits[s]);
+}
+
+
 
 
 
