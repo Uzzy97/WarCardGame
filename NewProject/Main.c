@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <time.h> 
 
+//Struct Arrays
+typedef struct Player
+{
+	char playerName[50];
+	int playerID;
+	int playerPoints;
+}Player;
+
 // Declaring methods
 void gameSave();
 int randomNum(int n);
@@ -14,28 +22,35 @@ int ranks[13] = { 2,3,4,5,6,7,8,9,10,11,12,13,14 };
 void main()
 {
 	// Declare Variables
-	int playerNum = 0;
+	int playerNumber = 0;
+	Player listOfPlayers[10];
 	int ROUNDS = 13;
+
+	// Introduction To Game - Heading
+	printf("WELCOME TO THE ULTIMATE CARD GAME...WAR !\nARE YOU READY TO TAKE ON YOUR OPPONENTS...\n\n");
 
 	// Input for the amount of players
 	do {
-		printf("Please enter the amount of players (2-10): ");
-		scanf_s("%d", &playerNum);
-	} while (playerNum < 1 || playerNum > 14);
+		printf("Please Enter The Amount Of Players (Between 2 & 10): ");
+		scanf_s("%d", &playerNumber);
+	} while (playerNumber < 1 || playerNumber > 14);
+
+	void enterNames(int player, Player listOfPlayers[10]);
+	enterNames(playerNumber, listOfPlayers);
 
 	// Starting the rounds using for loop
 	for (int roundNum = 1; roundNum < ROUNDS;)
 	{
 		char exit;
 		// Round Number
-		printf("Round %d\n", roundNum);
+		printf("\n\n\tRound %d\n", roundNum);
 		//Random cards drawn by players
-		for (int j = 0; j < playerNum; j++)
+		for (int j = 0; j < playerNumber; j++)
 		{
 			cardDraw();
 		}
 		// Exiting Round
-		printf("Would you like to exit the game? (y/n)");
+		printf("\nSelect (n/N) For Next Round, Or Select (y/Y) To Save Game And Exit (Y = Yes || N = No)");
 		scanf_s("%s", &exit);
 
 		if (exit == 'y' || exit == 'Y') {
@@ -44,24 +59,44 @@ void main()
 		}
 		else {
 			roundNum++;
-			printf("\nNext round\n");
+			printf("\n\tNext round\n");
 		}
 	}
 	printf("\n---Game over---");
 }
 
+void enterNames(int player, Player listOfPlayers[10])
+{
+	int i = 0;
+	for (i; i < player; i++)
+	{
+		char name[50];
+		printf("Player (%d) Please Enter Your First Name: ", i + 1);
+		scanf("%s", name);
+		Player pl;
+		pl.playerID = i;
+		pl.playerPoints = 0;
+		listOfPlayers[i] = pl;
+	}
+}
+
 // gameSave method
 void gameSave() {
 	char save;
-	printf("Would you like to save the game? (y/n)");
+	printf("\nWould You Like To Save And Exit The Game? (Y = Yes || N = No)");
 	sscanf_s("%s", &save);
 	if (save == 'y' || save == 'Y')
 	{
-		printf("Game has been saved");
+		printf("Your Game Has Been Saved :) ");
+	}
+
+	else if (save == 'n' || save == 'N')
+	{
+		printf("Your Game Has Been Not Been Saved \n\nYou Have Exited The Game Without Saving !");
 	}
 	else
 	{
-		printf("Game has been exited without saving!");
+		printf("You Have Exited The Game Without Saving !");
 	}
 }
 
@@ -72,7 +107,7 @@ void cardDraw() {
 	r = randomNum(13);
 	s = randomNum(4);
 
-	printf("\n%d of %s\n", ranks[r], suits[s]);
+	printf("\t\n\t%d of %s\n\n", ranks[r], suits[s]);
 
 }
 
