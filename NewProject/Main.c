@@ -35,6 +35,10 @@ void main()
 	// Declaring Variables
 	int playerNumber = 0;
 	Player listOfPlayers[10];
+	// Opening And Creating File
+	FILE* filep;
+	// Creating File Called storeGame.txt
+	filep = fopen("storeGame.txt", "a");
 
 	// Introduction To Game - Heading
 	printf("WELCOME TO THE ULTIMATE CARD GAME...WAR !\nARE YOU READY TO TAKE ON YOUR OPPONENTS...\n\n");
@@ -100,6 +104,8 @@ void main()
 	
 	// Makes Program Runnable Till End
 	getch();
+	// File Closed
+	fclose(filep);
 } // End Of Main 
 
 // Method To Prompt User To Enter Name
