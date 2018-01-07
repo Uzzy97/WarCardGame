@@ -19,12 +19,14 @@ void cardDraw();
 char *suits[4] = { "spades","clubs","diamonds","hearts" };
 int ranks[13] = { 2,3,4,5,6,7,8,9,10,11,12,13,14 };
 
+//Constants
+#define ROUNDS 13
+
 void main()
 {
 	// Declaring Variables
 	int playerNumber = 0;
 	Player listOfPlayers[10];
-	int ROUNDS = 13;
 
 	// Introduction To Game - Heading
 	printf("WELCOME TO THE ULTIMATE CARD GAME...WAR !\nARE YOU READY TO TAKE ON YOUR OPPONENTS...\n\n");
@@ -69,7 +71,7 @@ void main()
 		}
 	}
 	printf("\n---Game over---");
-}
+} // End Of Main 
 
 // Method To Prompt User To Enter Name
 void enterPlayerName(int player, Player listOfPlayers[10])
@@ -82,7 +84,7 @@ void enterPlayerName(int player, Player listOfPlayers[10])
 		printf("Player (%d) Please Enter Your First Name: ", i + 1);
 		scanf("%s", name);
 	}
-}
+} // End Of enterPlayerName() Method
 
 // Method For Saving Game
 void gameSave() {
@@ -103,7 +105,7 @@ void gameSave() {
 	{
 		printf("You Have Exited The Game Without Saving !");
 	}
-}// End Of gameSave Method
+} // End Of gameSave() Method
 
 // Random Number Generator
 int randomNum(int num)
