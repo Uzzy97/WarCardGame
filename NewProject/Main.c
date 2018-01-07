@@ -71,7 +71,9 @@ void main()
 			printf("\n\tNext round\n");
 		}
 	}
+	// Prompting Users That Game Is Over
 	printf("\n---GAME OVER---");
+	// Prompting Users To Add Up Scores
 	printf("\n---ADD UP YOUR SCORES TO SEE WHO THE WINNERS ARE---");
 	getch();
 } // End Of Main 
